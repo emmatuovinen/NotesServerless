@@ -1,0 +1,8 @@
+{
+  "body": "{\"content\":\"boo world\",\"attachment\":\"boo.jpg\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "boogieman"
+    }
+  }
+}
