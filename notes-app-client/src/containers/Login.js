@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import "./Login.css";
+import {Auth} from "aws-amplify";
+import LoaderButton from "../components/LoaderButton";
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
-
+        
+        //isLoading flag to show that login is ongoing
         this.state = {
+            isLoading: false,
             email: "",
             password: ""
         };
@@ -22,8 +26,21 @@ export default class Login extends Component {
         });
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
+
+        //isLoading gets updated on submit
+        this.setState({isLoading:true});
+
+        try {
+            await Auth.signIn(this.state.email, this.state.password);
+            this.props.userHasAuthenticated(true);
+            //redirecting the user to main page after login
+            this.props.history.push("/");
+        } catch (e) {
+            alert(e.message);
+            this.setState({isLoading:false});
+        }
     }
 
 
@@ -48,14 +65,15 @@ export default class Login extends Component {
                             type="password"
                         />
                     </FormGroup>
-                    <Button
+                    <LoaderButton
                         block
                         bsSize="large"
                         disabled={!this.validateForm()}
-                        type="submit"
-                    >
-                        Login
-                    </Button>
+                        type="submit"     
+                        isLoading={this.state.isLoading}
+                        text="Login"
+                        loadingText="Uno momento por favor"                           
+                    />
                 </form>
             </div>
         );
