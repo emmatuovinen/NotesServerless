@@ -78,7 +78,7 @@ export default class NewNote extends Component {
                     </FormGroup>
                     <FormGroup>
                         <ControlLabel>Attachment</ControlLabel>
-                        <FormControl onChange={this.handleSubmit} type="file" />
+                        <FormControl onChange={this.handleFileChange} type="file" />
                     </FormGroup>
                     <LoaderButton 
                         block

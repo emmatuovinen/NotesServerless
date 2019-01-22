@@ -36,7 +36,6 @@ export default class Login extends Component {
             await Auth.signIn(this.state.email, this.state.password);
             this.props.userHasAuthenticated(true);
             //redirecting the user to main page after login
-            this.props.history.push("/");
         } catch (e) {
             alert(e.message);
             this.setState({isLoading:false});
@@ -72,7 +71,7 @@ export default class Login extends Component {
                         type="submit"     
                         isLoading={this.state.isLoading}
                         text="Login"
-                        loadingText="Uno momento por favor"                           
+                        loadingText="Vamos!"                           
                     />
                 </form>
             </div>
