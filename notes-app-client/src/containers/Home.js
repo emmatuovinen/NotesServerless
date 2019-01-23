@@ -3,6 +3,7 @@ import {PageHeader, ListGroup, ListGroupItem} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import "./Home.css";
 import {API} from "aws-amplify";
+import {Link} from "react-router-dom";
 
 class Home extends Component {
     constructor(props) {
@@ -65,6 +66,14 @@ class Home extends Component {
             <div className="lander">
                 <h1>My Notes</h1>
                 <p>A simple note taking app</p>
+                <div>
+                    <Link to="/login" className="btn btn-info btn-lg" >
+                    login
+                    </Link>
+                    <Link to="/signup" className="btn btn-info btn-lg">
+                    sign up
+                    </Link>
+                </div>
             </div>
         )
     }
